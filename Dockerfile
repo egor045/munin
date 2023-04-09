@@ -48,7 +48,7 @@ ENV NODES
 ENV SNMP_NODES
 
 # Expose variable to disable node
-ENV DISABLE_MUNIN_NODE false
+ENV DISABLE_MUNIN_NODE true
 
 # Expose nginx
 EXPOSE 80
