@@ -58,4 +58,3 @@ ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
 # Run start script or what you choose
 CMD /docker-cmd.sh
- 
