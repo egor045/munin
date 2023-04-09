@@ -1,8 +1,5 @@
 FROM aheimsbakk/base-alpine:latest
 
-# Thats me
-MAINTAINER Arnulf Heimsbakk <arnulf.heimsbakk@gmail.com>
-
 # Install packages
 RUN apk add --no-cache \
   coreutils \
