@@ -1,6 +1,6 @@
 # munin-docker
 
-Container image for Munin server optimized for a large number of hosts in an effective manner.
+Container image for a Munin server, optimized for a large number of hosts in an effective manner.
 
 * `rrdcached` is used to be able to handle a large number of hosts
 
