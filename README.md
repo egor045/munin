@@ -1,4 +1,4 @@
-# munin-alpine
+# munin-docker
 
 Container image for Munin server optimized for a large number of hosts in an effective manner.
 
