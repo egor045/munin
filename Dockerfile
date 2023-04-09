@@ -1,7 +1,7 @@
-FROM aheimsbakk/base-alpine:latest
+FROM alpine:3.12
 
 # Install packages
-RUN apk add --no-cache \
+RUN apk --update --no-cache add \
   coreutils \
   dumb-init \
   findutils \
