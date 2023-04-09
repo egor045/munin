@@ -14,7 +14,6 @@ munin-docker
 [Docker Pulls Count]: https://img.shields.io/docker/pulls/kroese/munin-docker.svg?style=flat
 [gh_last_release_svg]: https://img.shields.io/docker/v/kroese/munin-docker?arch=amd64&sort=date
 
-
 Container image for a Munin server, optimized for a large number of hosts in an effective manner.
 
 * `rrdcached` is used to be able to handle a large number of hosts
