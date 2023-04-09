@@ -10,7 +10,7 @@ Inspired from build-failures [docker-munin-server](https://github.com/build-fail
 
 ## Tags
 
-* latest ([Dockerfile](https://github.com/aheimsbakk/munin/blob/master/Dockerfile))
+* latest ([Dockerfile](https://github.com/kroese/munin-docker/blob/master/Dockerfile))
 
 ## Environment variables
 
@@ -64,7 +64,7 @@ docker run -d \
   -e SNMP_NODES="routers;10.0.0.1:mycommunity routers;10.1.0.1:mycommunity" \
   -p 80:80 \
   --name munin-server \
-  aheimsbakk/munin-alpine
+  kroese/munin-docker
 ```
 
 Access container at `http://host/munin/`
