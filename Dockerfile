@@ -66,7 +66,7 @@ LABEL org.opencontainers.image.url=https://hub.docker.com/r/kroese/munin-docker/
 LABEL org.opencontainers.image.source=https://github.com/kroese/munin-docker/
 
 # Healthcheck
-HEALTHCHECK --interval=30s --timeout=2s CMD wget -nv -t1 --spider 'http://localhost:80/munin/' || exit 1
+HEALTHCHECK --interval=30s --retries=1 --timeout=3s CMD wget -nv -t1 --spider 'http://localhost:80/munin/' || exit 1
 
 # Use dumb-init since we run a lot of processes
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
