@@ -8,6 +8,7 @@ RUN apk --update --no-cache add \
   logrotate \
   munin \
   nginx \
+  curl \
   perl-cgi-fast \
   procps \
   rrdtool-cached \
