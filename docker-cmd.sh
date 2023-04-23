@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Munin for Docker v${VERSION}..."
+
 NODES="${NODES:-}"
 SNMP_NODES="${SNMP_NODES:-}"
 
@@ -10,7 +12,6 @@ fi
 
 cp "/usr/share/zoneinfo/$TZ" /etc/localtime
 echo "$TZ" >  /etc/timezone
-
 
 # Fix ownership
 chown munin:munin \
