@@ -77,7 +77,7 @@ env.community $COMMUNITY
 
 EOF
   fi
-  munin-node-configure --shell --snmp "$HOST" --snmpcommunity "$COMMUNITY" | bash
+  [ "$DISABLE_MUNIN_NODE" != "true" ] && munin-node-configure --shell --snmp "$HOST" --snmpcommunity "$COMMUNITY" | bash
 done
 
 if [ "$DISABLE_MUNIN_NODE" != "true" ]; then
