@@ -5,6 +5,7 @@ on:
       - master
     paths:
       - readme.md
+      - README.md
       - .github/workflows/hub.yml
 
 jobs:
@@ -21,4 +22,3 @@ jobs:
         repository: ${{ github.repository }}
         short-description: ${{ github.event.repository.description }}
         readme-filepath: ./readme.md
-
