@@ -6,7 +6,7 @@ munin-docker
 [![Docker Image Size]][munin-docker-hub]
 [![Docker Pulls Count]][munin-docker-hub]
 
-[build_url]: https://github.com/kroese/munin-docker/actions
+[build_url]: https://github.com/kroese/munin-docker/
 [munin-docker-hub]: https://hub.docker.com/r/kroese/munin-docker
 
 [build_img]: https://github.com/kroese/munin-docker/actions/workflows/build.yml/badge.svg
