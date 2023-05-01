@@ -1,18 +1,18 @@
 munin-docker
 =============
 
-[![build_img]][build_url]
-[![gh_last_release_svg]][munin-docker-hub]
-[![Docker Image Size]][munin-docker-hub]
-[![Docker Pulls Count]][munin-docker-hub]
+[![Build]][build_url]
+[![Version]][docker-hub]
+[![Size]][docker-hub]
+[![Pulls]][docker-hub]
 
 [build_url]: https://github.com/kroese/munin-docker/
-[munin-docker-hub]: https://hub.docker.com/r/kroese/munin-docker
+[docker-hub]: https://hub.docker.com/r/kroese/munin-docker
 
-[build_img]: https://github.com/kroese/munin-docker/actions/workflows/build.yml/badge.svg
-[Docker Image Size]: https://img.shields.io/docker/image-size/kroese/munin-docker/latest?color=066da5&label=size
-[Docker Pulls Count]: https://img.shields.io/docker/pulls/kroese/munin-docker.svg?style=flat&label=pulls
-[gh_last_release_svg]: https://img.shields.io/docker/v/kroese/munin-docker?arch=amd64&sort=date&color=066da5
+[Build]: https://github.com/kroese/munin-docker/actions/workflows/build.yml/badge.svg
+[Size]: https://img.shields.io/docker/image-size/kroese/munin-docker/latest?color=066da5&label=size
+[Pulls]: https://img.shields.io/docker/pulls/kroese/munin-docker.svg?style=flat&label=pulls
+[Version]: https://img.shields.io/docker/v/kroese/munin-docker?arch=amd64&sort=date&color=066da5
 
 Container image for a Munin server, optimized for a large number of hosts in an effective manner.
 
