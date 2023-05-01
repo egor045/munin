@@ -10,9 +10,9 @@ munin-docker
 [munin-docker-hub]: https://hub.docker.com/r/kroese/munin-docker
 
 [build_img]: https://github.com/kroese/munin-docker/actions/workflows/build.yml/badge.svg
-[Docker Image Size]: https://img.shields.io/docker/image-size/kroese/munin-docker/latest
+[Docker Image Size]: https://img.shields.io/docker/image-size/kroese/munin-docker/latest?color=066da5
 [Docker Pulls Count]: https://img.shields.io/docker/pulls/kroese/munin-docker.svg?style=flat
-[gh_last_release_svg]: https://img.shields.io/docker/v/kroese/munin-docker?arch=amd64&sort=date
+[gh_last_release_svg]: https://img.shields.io/docker/v/kroese/munin-docker?arch=amd64&sort=date&color=066da5
 
 Container image for a Munin server, optimized for a large number of hosts in an effective manner.
 
