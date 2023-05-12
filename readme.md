@@ -12,8 +12,6 @@ Container image for a Munin server, optimized for a large number of hosts in an 
 
 * `fcgi` is used for generation of graphs on demand and not cron
 
-Inspired on build-failures [docker-munin-server](https://github.com/build-failure/docker-munin-server).
-
 ## Environment variables
 
 * `NODES`
