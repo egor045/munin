@@ -16,7 +16,7 @@ Container image for a Munin server, optimized for a large number of hosts in an 
 
 Via `docker-compose`
 
-```
+```yaml
 version: "3.6"
 services:
   munin:
@@ -38,7 +38,7 @@ services:
 
 Via docker `run`
 
-```
+```bash
 docker run -d \
   -p 80:80 --name munin \
   -v /munin/lib:/var/lib/munin \
