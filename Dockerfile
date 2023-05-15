@@ -17,6 +17,12 @@ RUN apk --update --no-cache add \
   ttf-opensans \
   tzdata \
   ;
+  
+# Slim the install 
+RUN apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/ 
+
+# Create Munin user
+RUN useradd munin
 
 # Default nginx.conf
 COPY nginx.conf /etc/nginx/
