@@ -41,9 +41,6 @@ VOLUME /etc/munin/munin-conf.d /etc/munin/plugin-conf.d /var/lib/munin /var/log/
 # Expose NODES variable
 ENV NODES ""
 
-# Expose SNMP_NODES variable
-ENV SNMP_NODES ""
-
 # Expose nginx
 EXPOSE 80
 
