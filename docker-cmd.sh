@@ -18,6 +18,9 @@ chown munin:munin \
   /var/log/munin /run/munin /var/lib/munin /var/lib/munin/cgi-tmp \
   /etc/munin/munin-conf.d /etc/munin/plugin-conf.d
 
+chmod 755 /usr/share/webapps/munin/html
+chown -R munin:munin /usr/share/webapps/munin/html
+
 # Prepare for rrdcached
 sudo -u munin -- mkdir -p /var/lib/munin/rrdcached-journal
 chown munin:munin /var/lib/munin/rrdcached-journal
