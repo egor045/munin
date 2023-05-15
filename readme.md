@@ -17,7 +17,7 @@ Container image for a Munin master, optimized for a large number of nodes in an 
 Via `docker-compose`
 
 ```yaml
-version: "3.6"
+version: "3"
 services:
   munin:
     container_name: munin
