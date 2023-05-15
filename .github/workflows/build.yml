@@ -35,8 +35,8 @@ jobs:
               --build-arg "DATE_ARG=${{ github.event.repository.updated_at }}" \
               --label "build=${GITHUB_RUN_ID}" \
               --label "version=${{ vars.MAJOR }}.${{ vars.MINOR }}" \
-              --tag "${{ github.repository }}:latest" \
-              --tag "${{ github.repository }}:${{ vars.MAJOR }}.${{ vars.MINOR }}" \
+              --tag "${{ secrets.DOCKERHUB_USERNAME }}/{{ github.event.repository.name }}:latest" \
+              --tag "${{ secrets.DOCKERHUB_USERNAME }}/{{ github.event.repository.name }}:${{ vars.MAJOR }}.${{ vars.MINOR }}" \
               --tag "ghcr.io/${{ github.repository }}:latest" \
               --tag "ghcr.io/${{ github.repository }}:${{ vars.MAJOR }}.${{ vars.MINOR }}"
     -
@@ -48,8 +48,8 @@ jobs:
     -
       name: Push to DockerHub
       run: |
-              docker push "${{ github.repository }}:${{ vars.MAJOR }}.${{ vars.MINOR }}" &&\
-              docker push "${{ github.repository }}:latest"
+              docker push "${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ vars.MAJOR }}.${{ vars.MINOR }}" &&\
+              docker push "${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest"
     -
       name: Login to GitHub Container Registry
       uses: docker/login-action@v2
