@@ -12,6 +12,7 @@ RUN apk --update --no-cache add \
   procps \
   rrdtool-cached \
   spawn-fcgi \
+  bash \
   sudo \
   ttf-opensans \
   tzdata \
@@ -41,9 +42,6 @@ VOLUME /etc/munin/munin-conf.d /etc/munin/plugin-conf.d /var/lib/munin /var/log/
 # Expose NODES variable
 ENV NODES ""
 
-# Expose SNMP_NODES variable
-ENV SNMP_NODES ""
-
 # Expose nginx
 EXPOSE 80
 
@@ -66,4 +64,4 @@ HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider '
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
 # Run start script or what you choose
-CMD bash /docker-cmd.sh
+CMD /bin/bash /docker-cmd.sh

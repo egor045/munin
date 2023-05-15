@@ -4,7 +4,6 @@ set -eu
 echo "Munin for Docker v${VERSION}..."
 
 NODES="${NODES:-}"
-SNMP_NODES="${SNMP_NODES:-}"
 
 # Set timezone
 if ! [[ ! -z "$TZ" && -f "/usr/share/zoneinfo/$TZ" ]]; then
@@ -45,27 +44,6 @@ do
     address $HOST
     use_node_name yes
     port $PORT
-
-EOF
-  fi
-done
-
-# Generate snmp node list, and query snmp hosts for config
-[[ ! -z "$SNMP_NODES" ]] && for NODE in $SNMP_NODES
-do
-  GROUPHOST=`echo "$NODE" | cut -d ":" -f1`
-  HOST=`echo "$GROUPHOST" | cut -d ";" -f2`
-  COMMUNITY=`echo "$NODE" | cut -d ":" -f2`
-  if ! grep -q "$HOST" /etc/munin/munin-conf.d/snmp-nodes.conf 2>/dev/null ; then
-    cat << EOF >> /etc/munin/munin-conf.d/snmp-nodes.conf
-[$GROUPHOST]
-    address 127.0.0.1
-    use_node_name no
-
-EOF
-    cat << EOF >> /etc/munin/plugin-conf.d/snmp_communities
-[snmp_${HOST}_*]
-env.community $COMMUNITY
 
 EOF
   fi
