@@ -20,6 +20,7 @@ chown munin:munin \
 
 # Prepare for rrdcached
 sudo -u munin -- mkdir -p /var/lib/munin/rrdcached-journal
+chown munin:munin /var/lib/munin/rrdcached-journal
 
 # Start rrdcached
 sudo -u munin -- /usr/sbin/rrdcached \
