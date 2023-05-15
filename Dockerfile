@@ -15,13 +15,8 @@ RUN apk --update --no-cache add \
   sudo \
   ttf-opensans \
   tzdata \
-  ;
-
-# Set munin crontab
-RUN sed '/^[^*].*$/d; s/ munin //g' /etc/munin/munin.cron.sample | crontab -u munin - 
-
-# Log munin-node to stdout
-RUN sed -i 's#^log_file.*#log_file /dev/stdout#' /etc/munin/munin-node.conf
+  && sed '/^[^*].*$/d; s/ munin //g' /etc/munin/munin.cron.sample | crontab -u munin - \
+  && sed -i 's#^log_file.*#log_file /dev/stdout#' /etc/munin/munin-node.conf
 
 # Default nginx.conf
 COPY nginx.conf /etc/nginx/
