@@ -52,9 +52,33 @@ Container image for a Munin server, optimized for a large number of hosts in an 
 
 ## How to use this container
 
+Via `docker-compose`
+
+```
+version: "3.6"
+services:
+  munin:
+    container_name: munin
+    image: dockurr/docker-munin:latest
+    environment:
+      - "NODES=name1:10.0.0.101 name2:10.0.0.102"
+      - "TZ=Europe/Berlin"
+    ports:
+      - "80:80/tcp"
+    volumes:
+      - "/munin/log:/var/log/munin"
+      - "/munin/conf:/etc/munin/munin-conf.d"
+      - "/munin/plugin:/etc/munin/plugin-conf.d"
+      - "/munin/lib:/var/lib/munin"
+    restart: "always"
+    stop_grace_period: 1m
+```
+
+Via docker `run`
+
 ```
 docker run -d \
-  -p 80:80 --name munin-server \
+  -p 80:80 --name munin \
   -v /var/lib/munin:/var/lib/munin \
   -v /var/log/munin:/var/log/munin \
   -v /etc/munin/munin-conf.d:/etc/munin/munin-conf.d \
