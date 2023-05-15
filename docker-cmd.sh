@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eu
 
 echo "Munin for Docker v${VERSION}..."
 
