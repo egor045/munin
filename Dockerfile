@@ -15,9 +15,9 @@ RUN apk --update --no-cache add \
   spawn-fcgi \
   sudo \
   ttf-opensans \
-  tzdata; \
-  && sed '/^[^*].*$/d; s/ munin //g' /etc/munin/munin.cron.sample | crontab -u munin -; \
-  && sed -i 's#^log_file.*#log_file /dev/stdout#' /etc/munin/munin-node.conf;
+  tzdata \
+  && sed '/^[^*].*$/d; s/ munin //g' /etc/munin/munin.cron.sample | crontab -u munin - \
+  && sed -i 's#^log_file.*#log_file /dev/stdout#' /etc/munin/munin-node.conf
 
 # Default nginx.conf
 COPY nginx.conf /etc/nginx/
