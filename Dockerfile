@@ -29,6 +29,9 @@ COPY munin.conf /etc/munin/
 # Start script with all processes
 COPY docker-cmd.sh /
 
+# Set execute permission
+RUN chmod +x /docker-cmd.sh
+
 # Logrotate script for munin logs
 COPY munin /etc/logrotate.d/
 
