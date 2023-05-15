@@ -60,16 +60,16 @@ docker run -d \
   -v /etc/munin/munin-conf.d:/etc/munin/munin-conf.d \
   -v /etc/munin/plugin-conf.d:/etc/munin/plugin-conf.d \
   -e NODES="server1:10.0.0.2 server2:10.1.0.2" \
-  kroese/munin-docker
+  dockur/docker-munin
 ```
 
 Access container at `http://host/munin/`
 
-[build_url]: https://github.com/kroese/munin-docker/
-[hub_url]: https://hub.docker.com/r/kroese/munin-docker
-[tag_url]: https://hub.docker.com/r/kroese/munin-docker/tags
+[build_url]: https://github.com/dockur/docker-munin/
+[hub_url]: https://hub.docker.com/r/dockur/docker-munin
+[tag_url]: https://hub.docker.com/r/dockur/docker-munin/tags
 
-[Build]: https://github.com/kroese/munin-docker/actions/workflows/build.yml/badge.svg
-[Size]: https://img.shields.io/docker/image-size/kroese/munin-docker/latest?color=066da5&label=size
-[Pulls]: https://img.shields.io/docker/pulls/kroese/munin-docker.svg?style=flat&label=pulls&logo=docker
-[Version]: https://img.shields.io/docker/v/kroese/munin-docker?arch=amd64&sort=date&color=066da5
+[Build]: https://github.com/dockur/docker-munin/actions/workflows/build.yml/badge.svg
+[Size]: https://img.shields.io/docker/image-size/dockur/docker-munin/latest?color=066da5&label=size
+[Pulls]: https://img.shields.io/docker/pulls/dockur/docker-munin.svg?style=flat&label=pulls&logo=docker
+[Version]: https://img.shields.io/docker/v/dockur/docker-munin?arch=amd64&sort=date&color=066da5
