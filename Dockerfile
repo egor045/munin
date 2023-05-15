@@ -18,8 +18,8 @@ RUN apk --update --no-cache add \
   tzdata \
   ;
 
-# Create Munin user
-RUN useradd munin
+# Create the user and group
+RUN addgroup -S munin && adduser -S munin -G munin
 
 # Default nginx.conf
 COPY nginx.conf /etc/nginx/
