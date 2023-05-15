@@ -19,7 +19,7 @@ RUN apk --update --no-cache add \
   ;
 
 # Create the user and group
-RUN addgroup -S munin && adduser -S munin -G munin
+# RUN addgroup -S munin && adduser -S munin -G munin
 
 # Set munin crontab
 RUN sed '/^[^*].*$/d; s/ munin //g' /etc/munin/munin.cron.sample | crontab -u munin - 
