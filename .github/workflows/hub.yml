@@ -19,6 +19,6 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-        repository: ${{ github.repository }}
+        repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
         short-description: ${{ github.event.repository.description }}
         readme-filepath: ./readme.md
