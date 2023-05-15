@@ -61,16 +61,16 @@ services:
     container_name: munin
     image: dockurr/docker-munin:latest
     environment:
-      - "NODES=name1:10.0.0.101 name2:10.0.0.102"
+      - "NODES=server1:10.0.0.101 server2:10.0.0.102"
       - "TZ=Europe/Berlin"
     ports:
       - "80:80/tcp"
     volumes:
+      - "/munin/lib:/var/lib/munin"
       - "/munin/log:/var/log/munin"
       - "/munin/conf:/etc/munin/munin-conf.d"
       - "/munin/plugin:/etc/munin/plugin-conf.d"
-      - "/munin/lib:/var/lib/munin"
-    restart: "always"
+    restart: "onfailure"
     stop_grace_period: 1m
 ```
 
@@ -79,11 +79,11 @@ Via docker `run`
 ```
 docker run -d \
   -p 80:80 --name munin \
-  -v /var/lib/munin:/var/lib/munin \
-  -v /var/log/munin:/var/log/munin \
-  -v /etc/munin/munin-conf.d:/etc/munin/munin-conf.d \
-  -v /etc/munin/plugin-conf.d:/etc/munin/plugin-conf.d \
-  -e NODES="server1:10.0.0.2 server2:10.1.0.2" \
+  -v /munin/lib:/var/lib/munin \
+  -v /munin/log:/var/log/munin \
+  -v /munin/conf:/etc/munin/munin-conf.d \
+  -v /munin/plugin:/etc/munin/plugin-conf.d \
+  -e NODES="server1:10.0.0.101 server2:10.0.0.102" \
   dockurr/docker-munin
 ```
 
