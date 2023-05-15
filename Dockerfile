@@ -8,6 +8,15 @@ RUN apk --update --no-cache add \
   logrotate \
   munin \
   nginx \
+  busybox-binsh \
+  perl \
+  perl-date-manip \
+  perl-fcgi \
+  perl-file-copy-recursive \
+  perl-log-log4perl \
+  perl-net-server \
+  perl-net-snmp \
+  perl-net-ssleay \
   perl-cgi-fast \
   procps \
   rrdtool-cached \
