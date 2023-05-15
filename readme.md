@@ -1,4 +1,4 @@
-munin-docker
+docker-munin
 =============
 
 [![Build]][build_url]
