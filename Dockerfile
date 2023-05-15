@@ -7,7 +7,6 @@ RUN apk --update --no-cache add \
   findutils \
   logrotate \
   munin \
-  munin-node \
   nginx \
   perl-cgi-fast \
   procps \
@@ -16,8 +15,7 @@ RUN apk --update --no-cache add \
   sudo \
   ttf-opensans \
   tzdata \
-  && sed '/^[^*].*$/d; s/ munin //g' /etc/munin/munin.cron.sample | crontab -u munin - \
-  && sed -i 's#^log_file.*#log_file /dev/stdout#' /etc/munin/munin-node.conf
+  ;
 
 # Default nginx.conf
 COPY nginx.conf /etc/nginx/
@@ -43,9 +41,6 @@ ENV NODES ""
 # Expose SNMP_NODES variable
 ENV SNMP_NODES ""
 
-# Expose variable to disable node
-ENV DISABLE_MUNIN_NODE true
-
 # Expose nginx
 EXPOSE 80
 
@@ -58,11 +53,11 @@ ENV VERSION=$VERSION_ARG
 LABEL org.opencontainers.image.created=${DATE_ARG}
 LABEL org.opencontainers.image.revision=${BUILD_ARG}
 LABEL org.opencontainers.image.version=${VERSION_ARG}
-LABEL org.opencontainers.image.url=https://hub.docker.com/r/kroese/munin-docker/
-LABEL org.opencontainers.image.source=https://github.com/kroese/munin-docker/
+LABEL org.opencontainers.image.url=https://hub.docker.com/r/dockurr/docker-munin/
+LABEL org.opencontainers.image.source=https://github.com/dockur/docker-munin/
 
 # Healthcheck
-HEALTHCHECK --interval=30s --retries=1 --timeout=3s CMD wget -nv -t1 --spider 'http://localhost:80/munin/' || exit 1
+HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider 'http://localhost:80/munin/' || exit 1
 
 # Use dumb-init since we run a lot of processes
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
