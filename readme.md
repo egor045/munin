@@ -61,7 +61,7 @@ services:
     container_name: munin
     image: dockurr/docker-munin:latest
     environment:
-      - "NODES=server1:10.0.0.101 server2:10.0.0.102"
+      - "NODES=node1:10.0.0.101 node2:10.0.0.102"
       - "TZ=Europe/Berlin"
     ports:
       - "80:80/tcp"
@@ -83,7 +83,7 @@ docker run -d \
   -v /munin/log:/var/log/munin \
   -v /munin/conf:/etc/munin/munin-conf.d \
   -v /munin/plugin:/etc/munin/plugin-conf.d \
-  -e NODES="server1:10.0.0.101 server2:10.0.0.102" \
+  -e NODES="node1:10.0.0.101 node2:10.0.0.102" \
   dockurr/docker-munin
 ```
 
