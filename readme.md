@@ -6,9 +6,9 @@ docker-munin
 [![Size]][tag_url]
 [![Pulls]][hub_url]
 
-Container image for a Munin server, optimized for a large number of hosts in an effective manner.
+Container image for a Munin master, optimized for a large number of nodes in an effective manner.
 
-* `rrdcached` is used to be able to handle a large number of hosts
+* `rrdcached` is used to be able to handle a large number of nodes
 
 * `fcgi` is used for generation of graphs on demand and not cron
 
