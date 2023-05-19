@@ -6,7 +6,7 @@ docker-munin
 [![Size]][tag_url]
 [![Pulls]][hub_url]
 
-Container image for a Munin master, optimized for a large number of nodes in an effective manner.
+Container image for a Munin master server, optimized for a large number of nodes in an effective manner.
 
 * `rrdcached` is used to be able to handle a large number of nodes
 
