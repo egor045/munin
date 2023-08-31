@@ -61,7 +61,7 @@ LABEL org.opencontainers.image.created=${DATE_ARG}
 LABEL org.opencontainers.image.revision=${BUILD_ARG}
 LABEL org.opencontainers.image.version=${VERSION_ARG}
 LABEL org.opencontainers.image.url=https://hub.docker.com/r/dockurr/docker-munin/
-LABEL org.opencontainers.image.source=https://github.com/dockur/docker-munin/
+LABEL org.opencontainers.image.source=https://github.com/dockur/munin/
 
 # Healthcheck
 HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider 'http://localhost:80/munin/' || exit 1
