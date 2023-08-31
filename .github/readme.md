@@ -51,11 +51,11 @@ docker run -d \
 
 Access the container at `http://host/munin/`
 
-[build_url]: https://github.com/dockur/docker-munin/
+[build_url]: https://github.com/dockur/munin/
 [hub_url]: https://hub.docker.com/r/dockurr/docker-munin
 [tag_url]: https://hub.docker.com/r/dockurr/docker-munin/tags
 
-[Build]: https://github.com/dockur/docker-munin/actions/workflows/build.yml/badge.svg
+[Build]: https://github.com/dockur/munin/actions/workflows/build.yml/badge.svg
 [Size]: https://img.shields.io/docker/image-size/dockurr/docker-munin/latest?color=066da5&label=size
 [Pulls]: https://img.shields.io/docker/pulls/dockurr/docker-munin.svg?style=flat&label=pulls&logo=docker
 [Version]: https://img.shields.io/docker/v/dockurr/docker-munin?arch=amd64&sort=date&color=066da5
