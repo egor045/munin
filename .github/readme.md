@@ -58,4 +58,4 @@ Access the container at `http://host/munin/`
 [Build]: https://github.com/dockur/munin/actions/workflows/build.yml/badge.svg
 [Size]: https://img.shields.io/docker/image-size/dockurr/munin/latest?color=066da5&label=size
 [Pulls]: https://img.shields.io/docker/pulls/dockurr/munin.svg?style=flat&label=pulls&logo=docker
-[Version]: https://img.shields.io/docker/v/dockurr/munin?arch=amd64&sort=date&color=066da5
+[Version]: https://img.shields.io/docker/v/dockurr/munin/latest?arch=amd64&sort=semver&color=066da5
