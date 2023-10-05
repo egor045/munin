@@ -1,5 +1,8 @@
-docker-munin
-=============
+<h1 align="center">Munin for Docker<br />
+<div align="center">
+<img src="https://raw.githubusercontent.com/dockur/munin/master/.github/logo.gif" title="Logo" style="max-width:100%;" width="256" />
+</div>
+<div align="center">
 
 [![Build]][build_url]
 [![Version]][tag_url]
