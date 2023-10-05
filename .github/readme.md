@@ -1,6 +1,6 @@
 <h1 align="center">Munin for Docker<br />
 <div align="center">
-<img src="https://raw.githubusercontent.com/dockur/munin/master/.github/logo.gif" title="Logo" style="max-width:100%;" width="256" />
+<img src="https://raw.githubusercontent.com/dockur/munin/master/.github/logo.jpg" title="Logo" style="max-width:100%;" width="256" />
 </div>
 <div align="center">
 
@@ -8,6 +8,8 @@
 [![Version]][tag_url]
 [![Size]][tag_url]
 [![Pulls]][hub_url]
+
+</div></h1>
 
 Container image for a Munin master server, optimized for a large number of nodes in an effective manner.
 
