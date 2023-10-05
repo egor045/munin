@@ -1,4 +1,4 @@
-FROM alpine:3.18.4
+FROM alpine:edge
 
 # Install packages
 RUN apk --update --no-cache add \
