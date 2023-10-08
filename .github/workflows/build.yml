@@ -23,9 +23,10 @@ jobs:
           fetch-depth: 0
       -
         name: Get remote package data
-        uses: wei/curl@master
+        uses: valitydev/action-download-file@v1
         with:
-          args: --silent "https://pkgs.alpinelinux.org/package/edge/community/x86_64/munin" --output ./package_data.html
+            url: https://pkgs.alpinelinux.org/package/edge/community/x86_64/munin
+            target-path: ./package_data.html
       - 
         name: Get tag from package data
         run: |
