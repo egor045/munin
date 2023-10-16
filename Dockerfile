@@ -57,11 +57,13 @@ ARG BUILD_ARG=0
 ARG VERSION_ARG="0.0"
 ENV VERSION=$VERSION_ARG
 
+LABEL org.opencontainers.image.title=Munin
 LABEL org.opencontainers.image.created=${DATE_ARG}
 LABEL org.opencontainers.image.revision=${BUILD_ARG}
 LABEL org.opencontainers.image.version=${VERSION_ARG}
 LABEL org.opencontainers.image.url=https://hub.docker.com/r/dockurr/munin/
 LABEL org.opencontainers.image.source=https://github.com/dockur/munin/
+LABEL org.opencontainers.image.description=Munin master server with rrdcache and fcgi
 
 # Healthcheck
 HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider 'http://localhost:80/munin/' || exit 1
