@@ -51,13 +51,6 @@ ENV NODES ""
 # Expose nginx
 EXPOSE 80
 
-# Container version
-ARG VERSION_ARG="0.0"
-ENV VERSION=$VERSION_ARG
-
-LABEL org.opencontainers.image.title="Munin"
-LABEL org.opencontainers.image.description="Munin master server with rrdcache and fcgi"
-
 # Healthcheck
 HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider 'http://localhost:80/munin/' || exit 1
 
