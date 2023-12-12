@@ -1,7 +1,7 @@
 FROM alpine:edge
 
 # Install packages
-RUN apk --update --no-cache add \
+RUN apk --no-cache add \
   coreutils \
   dumb-init \
   findutils \
