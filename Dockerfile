@@ -16,7 +16,7 @@ RUN apk --no-cache add \
   sudo \
   ttf-opensans \
   tzdata \
-  ;
+  && rm -rf /var/cache/apk/*
 
 # Create the user and group
 # RUN addgroup -S munin && adduser -S munin -G munin
