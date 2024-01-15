@@ -26,7 +26,7 @@ version: "3"
 services:
   munin:
     container_name: munin
-    image: dockurr/munin:latest
+    image: dockurr/munin
     environment:
       - "NODES=node1:10.0.0.101 node2:10.0.0.102"
       - "TZ=Europe/Berlin"
