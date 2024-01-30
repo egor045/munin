@@ -58,4 +58,4 @@ HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider '
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
 # Run start script or what you choose
-CMD /bin/bash /docker-cmd.sh
+CMD ["/bin/bash", "/docker-cmd.sh"]
