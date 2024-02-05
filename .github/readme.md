@@ -56,6 +56,9 @@ docker run -d \
 
 Access the container at `http://host/munin/`
 
+## Stars
+[![Stars](https://starchart.cc/dockur/munin.svg?variant=adaptive)](https://starchart.cc/dockur/munin)
+
 [build_url]: https://github.com/dockur/munin/
 [hub_url]: https://hub.docker.com/r/dockurr/munin
 [tag_url]: https://hub.docker.com/r/dockurr/munin/tags
