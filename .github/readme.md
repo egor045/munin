@@ -1,4 +1,4 @@
-<h1 align="center">Munin<br />
+<h1 align="center">Munin for Docker<br />
 <div align="center">
 <img src="https://raw.githubusercontent.com/dockur/munin/master/.github/logo.jpg" title="Logo" style="max-width:100%;" width="256" />
 </div>
@@ -25,19 +25,19 @@ Via `docker-compose`
 version: "3"
 services:
   munin:
-    container_name: munin
     image: dockurr/munin
+    container_name: munin
     environment:
       - "NODES=node1:10.0.0.101 node2:10.0.0.102"
       - "TZ=Europe/Berlin"
     ports:
-      - "80:80/tcp"
+      - 80:80
     volumes:
       - "/munin/lib:/var/lib/munin"
       - "/munin/log:/var/log/munin"
       - "/munin/conf:/etc/munin/munin-conf.d"
       - "/munin/plugin:/etc/munin/plugin-conf.d"
-    restart: "onfailure"
+    restart: on-failure
     stop_grace_period: 1m
 ```
 
