@@ -1,4 +1,4 @@
-<h1 align="center">Munin for Docker<br />
+<h1 align="center">Munin<br />
 <div align="center">
 <img src="https://raw.githubusercontent.com/dockur/munin/master/.github/logo.jpg" title="Logo" style="max-width:100%;" width="256" />
 </div>
