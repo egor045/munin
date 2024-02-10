@@ -28,8 +28,8 @@ services:
     image: dockurr/munin
     container_name: munin
     environment:
-      - "NODES=node1:10.0.0.101 node2:10.0.0.102"
-      - "TZ=Europe/Berlin"
+      - TZ: "Europe/Berlin"
+      - NODES: "node1:10.0.0.101 node2:10.0.0.102"
     ports:
       - 80:80
     volumes:
@@ -50,7 +50,7 @@ docker run -d \
   -v /munin/log:/var/log/munin \
   -v /munin/conf:/etc/munin/munin-conf.d \
   -v /munin/plugin:/etc/munin/plugin-conf.d \
-  -e NODES="node1:10.0.0.101 node2:10.0.0.102" \
+  -e "NODES=node1:10.0.0.101 node2:10.0.0.102" \
   dockurr/munin
 ```
 
