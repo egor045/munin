@@ -19,7 +19,7 @@ Container image for a Munin master server, optimized for a large number of nodes
 
 ## How to use
 
-Via `docker-compose`
+Via Docker Compose:
 
 ```yaml
 version: "3"
@@ -41,7 +41,7 @@ services:
     stop_grace_period: 1m
 ```
 
-Via docker `run`
+Via Docker CLI:
 
 ```bash
 docker run -d \
