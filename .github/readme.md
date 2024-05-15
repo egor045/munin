@@ -22,7 +22,6 @@ Container image for a Munin master server, optimized for a large number of nodes
 Via Docker Compose:
 
 ```yaml
-version: "3"
 services:
   munin:
     image: dockurr/munin
