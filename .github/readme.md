@@ -36,7 +36,6 @@ services:
       - "/munin/log:/var/log/munin"
       - "/munin/conf:/etc/munin/munin-conf.d"
       - "/munin/plugin:/etc/munin/plugin-conf.d"
-    restart: on-failure
     stop_grace_period: 1m
 ```
 
