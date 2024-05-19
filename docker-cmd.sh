@@ -1,17 +1,17 @@
 #!/bin/bash
 set -eu
 
-echo "Munin for Docker v${VERSION}..."
+echo "Munin for Docker v$(</run/version)..."
 
 NODES="${NODES:-}"
 
 # Set timezone
 if ! [[ ! -z "$TZ" && -f "/usr/share/zoneinfo/$TZ" ]]; then
-  TZ=UTC
+  TZ="UTC"
 fi
 
 cp "/usr/share/zoneinfo/$TZ" /etc/localtime
-echo "$TZ" >  /etc/timezone
+echo "$TZ" > /etc/timezone
 
 # Fix ownership
 chown munin:munin \
