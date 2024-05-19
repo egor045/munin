@@ -1,22 +1,25 @@
 FROM alpine:edge
 
+ARG VERSION_ARG="0.0"
+    
 # Install packages
 RUN apk --no-cache add \
-  coreutils \
-  dumb-init \
-  findutils \
-  logrotate \
-  munin \
-  munin-node \
-  nginx \
-  perl-cgi-fast \
-  procps \
-  rrdtool-cached \
-  spawn-fcgi \
-  sudo \
-  ttf-opensans \
-  tzdata \
-  && rm -rf /var/cache/apk/*
+    coreutils \
+    dumb-init \
+    findutils \
+    logrotate \
+    munin \
+    munin-node \
+    nginx \
+    perl-cgi-fast \
+    procps \
+    rrdtool-cached \
+    spawn-fcgi \
+    sudo \
+    ttf-opensans \
+    tzdata && \
+  echo "$VERSION_ARG" > /run/version && \
+  rm -rf /var/cache/apk/*
 
 # Create the user and group
 # RUN addgroup -S munin && adduser -S munin -G munin
