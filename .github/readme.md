@@ -42,14 +42,7 @@ services:
 Via Docker CLI:
 
 ```bash
-docker run -d \
-  -p 80:80 --name munin \
-  -v /munin/lib:/var/lib/munin \
-  -v /munin/log:/var/log/munin \
-  -v /munin/conf:/etc/munin/munin-conf.d \
-  -v /munin/plugin:/etc/munin/plugin-conf.d \
-  -e "NODES=node1:10.0.0.101 node2:10.0.0.102" \
-  dockurr/munin
+docker run -it --rm -p 80:80 -e "NODES=node1:10.0.0.101 node2:10.0.0.102" --stop-timeout 60 dockurr/munin
 ```
 
 Access the container at `http://host/munin/`
