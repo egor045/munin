@@ -11,7 +11,7 @@
 
 </div></h1>
 
-Container image for a Munin master server, optimized for a large number of nodes in an effective manner.
+Container image for a [Munin](https://munin-monitoring.org/) master server, optimized for a large number of nodes in an effective manner.
 
 * `rrdcached` is used to be able to handle a large number of nodes
 
