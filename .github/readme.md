@@ -13,11 +13,13 @@
 
 Container image for a [Munin](https://munin-monitoring.org/) master server, optimized for a large number of nodes in an effective manner.
 
-* `rrdcached` is used to be able to handle a large number of nodes
+## Features ✨
 
-* `fcgi` is used for generation of graphs on demand and not cron
+* `rrdcached` is used to be able to handle a large number of nodes.
 
-## How to use
+* `fcgi` is used for generation of graphs on demand and not cron.
+
+## Usage  🐳
 
 Via Docker Compose:
 
@@ -47,7 +49,7 @@ docker run -it --rm -p 80:80 -e "NODES=node1:10.0.0.101 node2:10.0.0.102" --stop
 
 Access the container at `http://host/munin/`
 
-## Stars
+## Stars 🌟
 [![Stars](https://starchart.cc/dockur/munin.svg?variant=adaptive)](https://starchart.cc/dockur/munin)
 
 [build_url]: https://github.com/dockur/munin/
