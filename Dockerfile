@@ -49,7 +49,7 @@ COPY munin /etc/logrotate.d/
 VOLUME /etc/munin/munin-conf.d /etc/munin/plugin-conf.d /var/lib/munin /var/log/munin
 
 # Expose NODES variable
-ENV NODES ""
+ENV NODES=""
 
 # Expose nginx
 EXPOSE 80
