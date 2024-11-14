@@ -50,6 +50,10 @@ docker run -it --rm -p 80:80 -e "NODES=node1:10.0.0.101 node2:10.0.0.102" --stop
 
 Access the container at `http://host/munin/`
 
+ # Acknowledgements 🙏
+ 
+Special thanks to [@aheimsbakk](https://github.com/aheimsbakk).
+
 ## Stars 🌟
 [![Stars](https://starchart.cc/dockur/munin.svg?variant=adaptive)](https://starchart.cc/dockur/munin)
 
