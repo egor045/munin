@@ -35,10 +35,10 @@ services:
     ports:
       - 80:80
     volumes:
-      - "/munin/lib:/var/lib/munin"
-      - "/munin/log:/var/log/munin"
-      - "/munin/conf:/etc/munin/munin-conf.d"
-      - "/munin/plugin:/etc/munin/plugin-conf.d"
+      - ./munin/lib:/var/lib/munin
+      - ./munin/log:/var/log/munin
+      - ./munin/conf:/etc/munin/munin-conf.d
+      - ./munin/plugin:/etc/munin/plugin-conf.d
     restart: always
     stop_grace_period: 1m
 ```
@@ -46,7 +46,7 @@ services:
 Via Docker CLI:
 
 ```bash
-docker run -it --rm -p 80:80 -e "NODES=node1:10.0.0.101 node2:10.0.0.102" --stop-timeout 60 dockurr/munin
+docker run -it --rm --name munin -p 80:80 -e "NODES=node1:10.0.0.101 node2:10.0.0.102" --stop-timeout 60 dockurr/munin
 ```
 
  # Acknowledgements 🙏
