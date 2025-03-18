@@ -1,6 +1,6 @@
 <h1 align="center">Munin for Docker<br />
 <div align="center">
-<a href="https://github.com/dockur/munin"><img src="https://raw.githubusercontent.com/dockur/munin/master/.github/logo.jpg" title="Logo" style="max-width:100%;" width="256" /></a>
+<a href="https://github.com/dockur/munin"><img src="https://raw.githubusercontent.com/dockur/munin/master/.github/logo.jpg" title="Logo" style="max-width:100%;" width="192" /></a>
 </div>
 <div align="center">
 
@@ -22,7 +22,7 @@ Container image for a [Munin](https://munin-monitoring.org/) master server, opti
 
 ## Usage  🐳
 
-Via Docker Compose:
+##### Via Docker Compose:
 
 ```yaml
 services:
@@ -43,7 +43,7 @@ services:
     stop_grace_period: 1m
 ```
 
-Via Docker CLI:
+##### Via Docker CLI:
 
 ```bash
 docker run -it --rm --name munin -p 80:80 -e "NODES=node1:10.0.0.101 node2:10.0.0.102" --stop-timeout 60 dockurr/munin
