@@ -12,7 +12,7 @@
 
 </div></h1>
 
-Container image for a [Munin](https://munin-monitoring.org/) master server, optimized for a large number of nodes in an effective manner.
+Container image for a [Munin](https://munin-monitoring.org/) master server.
 
 ## Features ✨
 
