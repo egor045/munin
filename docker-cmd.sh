@@ -3,15 +3,20 @@ set -eu
 
 echo "Munin for Docker v$(</run/version)..."
 
+TZ="${TZ:-}"
 NODES="${NODES:-}"
 
-# Set timezone
-if ! [[ ! -z "$TZ" && -f "/usr/share/zoneinfo/$TZ" ]]; then
-  TZ="UTC"
-fi
+if [ -n "$TZ" ]; then
 
-cp "/usr/share/zoneinfo/$TZ" /etc/localtime
-echo "$TZ" > /etc/timezone
+  # Set timezone
+  if [ ! -f "/usr/share/zoneinfo/$TZ" ]; then
+    TZ="UTC"
+  fi
+
+  cp "/usr/share/zoneinfo/$TZ" /etc/localtime
+  echo "$TZ" > /etc/timezone
+
+fi
 
 # Make directories before setting permissions
 mkdir -p /run/munin
