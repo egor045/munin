@@ -1,12 +1,12 @@
-# munin-alpine
+# munin
 
-Container image for Munin server optimized for a large number of hosts in an effective manner.
+Container image for Munin server optimized for a large number of hosts in an effective manner. Includes SNMP node support
 
 * `rrdcached` is used to be able to handle a large number of hosts
 
 * `fcgi` is used for generation of graphs on demand and not cron
 
-Inspired from build-failures [docker-munin-server](https://github.com/build-failure/docker-munin-server).
+Forked from [dockurr/munin](https://github.com/dockur/munin), which in turn was inspired from build-failures [docker-munin-server](https://github.com/build-failure/docker-munin-server).
 
 ## Tags
 
@@ -27,6 +27,12 @@ Inspired from build-failures [docker-munin-server](https://github.com/build-fail
 * `TZ`
 
     Time zone. Defaults to `UTC`.
+
+* `SNMP_PLUGINS_EXCLUDED`
+
+    Format `regex1 regex2...`
+
+    Regex to exclude certain plugins (e.g. to exclude swap metrics and disk space metrics on an OpenWRT device, use `swap df`)
 
 ## Exposed ports
 
@@ -54,7 +60,7 @@ For persistense.
 
 ## How to use this container
 
-```
+```sh
 docker run -d \
   -v /etc/munin/munin-conf.d:/etc/munin/munin-conf.d \
   -v /etc/munin/plugin-conf.d:/etc/munin/plugin-conf.d \
@@ -63,9 +69,9 @@ docker run -d \
   -e NODES="server1:10.0.0.2 server2:10.1.0.2" \
   -e SNMP_NODES="routers;10.0.0.1:mycommunity routers;10.1.0.1:mycommunity" \
   -p 80:80 \
+  -p 4950:4949 \
   --name munin-server \
-  aheimsbakk/munin-alpine
+  egor045/munin
 ```
 
 Access container at `http://host/munin/`
-

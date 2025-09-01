@@ -50,8 +50,10 @@ COPY munin /etc/logrotate.d/
 # Expose volumes
 VOLUME /etc/munin/munin-conf.d /etc/munin/plugin-conf.d /var/lib/munin /var/log/munin
 
-# Expose NODES variable
+# Expose NODES, SNMP_NODES,  variable
 ENV NODES=""
+ENV SNMP_NODES=""
+ENV SNMP_PLUGINS_EXCLUDED=""
 
 # Expose nginx
 EXPOSE 80

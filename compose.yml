@@ -1,10 +1,12 @@
 services:
   munin:
-    image: dockurr/munin
+    image: egor045/munin
     container_name: munin
     environment:
       TZ: "Europe/Berlin"
       NODES: "node1:10.0.0.101 node2:10.0.0.102"
+      SNMP_NODES: "10.0.0.11:4949 10.0.0.12"
+      # SNMP_PLUGINS_EXCLUDED: "df swap"
     ports:
       - 80:80
     volumes:
