@@ -1,4 +1,4 @@
-IMAGE_NAME:="egor045/munin-test"
+IMAGE_NAME:="egor045/munin"
 IMAGE_VERSION:=`cat ./version.txt`
 
 container: Dockerfile
