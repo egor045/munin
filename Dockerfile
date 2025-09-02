@@ -35,8 +35,8 @@ COPY nginx.conf /etc/nginx/
 # Copy munin config to nginx
 COPY default.conf /etc/nginx/conf.d/
 
-# Copy munin conf
-COPY munin.conf /etc/munin/
+# Copy munin conf, munin-node.conf
+COPY munin.conf munin-node.conf /etc/munin/
 
 # Start script with all processes
 COPY docker-cmd.sh /
