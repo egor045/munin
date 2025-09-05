@@ -8,8 +8,6 @@ NODES="${NODES:-}"
 SNMP_NODES="${SNMP_NODES:-}"
 SNMP_PLUGINS_EXCLUDED="${SNMP_PLUGINS_EXCLUDED:-}"
 
-TEMP_SNMP_PLUGINS_SCRIPT="/tmp/snmp_plugins.$$"
-
 if [ -n "$TZ" ]; then
 
   # Set timezone
@@ -68,36 +66,42 @@ EOF
 done
 
 # Generate snmp_node list
+declare -A h_snmp_plugins_excluded
+
+for PLUGIN in $SNMP_PLUGINS_EXCLUDED ; do 
+  NAME=`echo "$SNMP_PLUGINS_EXCLUDED" | cut -d ":" -f 1`
+  PLUGIN_LIST=`echo "$SNMP_PLUGINS_EXCLUDED" | cut -d ":" -f 2`
+  h_snmp_plugins_excluded[$NAME]="$(echo $PLUGIN_LIST | sed -e 's/,/ /g')"
+done
+
 [[ ! -z "$SNMP_NODES" ]] && for SNMP_NODE in $SNMP_NODES
 do
   NAME=`echo "$SNMP_NODE" | cut -d ":" -f 1`
   COMM=`echo "$SNMP_NODE" | cut -d ":" -f 2`
   REMOTE=`echo "$NAME" | cut -d ";" -f 2`
-  if [ ${#COMM} -eq 0 ]; then
-      COMM="public"
-  fi
-  if ! grep -q "$HOST" /etc/munin/munin-conf.d/snmp_nodes.conf 2>/dev/null ; then
+  if ! grep -q "$REMOTE" /etc/munin/munin-conf.d/snmp_nodes.conf 2>/dev/null ; then
     cat << EOF >> /etc/munin/munin-conf.d/snmp_nodes.conf
 [$NAME]
     address localhost
     use_node_name no
 
 EOF
+  fi
 
-# Probe snmp host to get plugins
-# Filter list by SNMP_PLUGIN_EXCLUDED regexp
-    if [ ! -z "$SNMP_PLUGINS_EXCLUDED" ] ; then
+# Probe snmp host to get SNMP plugins
+# Filter list by node entry in $h_snmp_plugins_excluded
+    echo "exclude_plugins: name=$NAME h_plugins_excluded[$NAME]=${h_snmp_plugins_excluded[$NAME]}" >> /docker-cmd.log
+    if [ ! -z "${h_snmp_plugins_excluded[$NAME]}" ] ; then
       GREP_ARGS="-v"
-      for r in $SNMP_PLUGINS_EXCLUDED ; do
+      for r in ${h_snmp_plugins_excluded[$NAME]} ; do
         GREP_ARGS="$GREP_ARGS -e snmp__$r"
       done
-      echo GREP_ARGS=$GREP_ARGS
-      munin-node-configure --shell --snmp $REMOTE --snmpcommunity $COMM | grep $GREP_ARGS > $TEMP_SNMP_PLUGINS_SCRIPT
+      munin-node-configure --shell --snmp $REMOTE | grep $GREP_ARGS | sh
     fi
-    [[ -z "$SNMP_PLUGINS_EXCLUDED" ]] && munin-node-configure --shell --snmp $NAME --snmpcommunity $COMM > $TEMP_SNMP_PLUGINS_SCRIPT
-    . $TEMP_SNMP_PLUGINS_SCRIPT && rm -f $TEMP_SNMP_PLUGINS_SCRIPT
-  fi
 done
+
+# Add munin_stats plugin to /etc/munin/plugins/
+ln -s /usr/lib/munin/plugins/munin_stats /etc/munin/plugins/munin_stats
 
 # Run once before we start fcgi
 sudo -u munin -- /usr/bin/munin-cron munin

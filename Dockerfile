@@ -14,6 +14,7 @@ RUN apk --no-cache add \
     munin-node \
     nginx \
     perl-cgi-fast \
+    perl-net-cidr \
     procps \
     rrdtool-cached \
     spawn-fcgi \
