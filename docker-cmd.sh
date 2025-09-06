@@ -8,6 +8,74 @@ NODES="${NODES:-}"
 SNMP_NODES="${SNMP_NODES:-}"
 SNMP_PLUGINS_EXCLUDED="${SNMP_PLUGINS_EXCLUDED:-}"
 
+generate_node_config () {
+
+  for NODE in $NODES
+  do
+    NAME=`echo "$NODE" | cut -d ":" -f1`
+    HOST=`echo "$NODE" | cut -d ":" -f2`
+    PORT=`echo "$NODE" | cut -d ":" -f3`
+    if [ ${#PORT} -eq 0 ]; then
+        PORT=4949
+    fi
+    if ! grep -q "$HOST" /etc/munin/munin-conf.d/nodes.conf 2>/dev/null ; then
+      cat << EOF >> /etc/munin/munin-conf.d/nodes.conf
+[$NAME]
+    address $HOST
+    use_node_name yes
+    port $PORT
+
+EOF
+    fi
+  done
+
+}
+
+generate_snmp_node_config () {
+
+  for SNMP_NODE in $SNMP_NODES
+  do
+    NAME=`echo "$SNMP_NODE" | cut -d ":" -f 1`
+    COMM=`echo "$SNMP_NODE" | cut -d ":" -f 2`
+    REMOTE=`echo "$NAME" | cut -d ";" -f 2`
+    if ! grep -q "$REMOTE" /etc/munin/munin-conf.d/snmp_nodes.conf 2>/dev/null ; then
+      cat << EOF >> /etc/munin/munin-conf.d/snmp_nodes.conf
+[$NAME]
+    address localhost
+    use_node_name no
+
+EOF
+    fi
+
+    # Probe snmp host to get SNMP plugins
+    # Filter list by node entry in $h_snmp_plugins_excluded
+    install_snmp_plugins
+      
+  done
+
+}
+
+install_snmp_plugins () {
+
+  declare -A h_snmp_plugins_excluded
+
+  for PLUGIN in $SNMP_PLUGINS_EXCLUDED ; do 
+    NAME=`echo "$SNMP_PLUGINS_EXCLUDED" | cut -d ":" -f 1`
+    PLUGIN_LIST=`echo "$SNMP_PLUGINS_EXCLUDED" | cut -d ":" -f 2`
+    h_snmp_plugins_excluded[$NAME]="$(echo $PLUGIN_LIST | sed -e 's/,/ /g')"
+  done
+
+  echo "exclude_plugins: name=$NAME h_plugins_excluded[$NAME]=${h_snmp_plugins_excluded[$NAME]}" >> /docker-cmd.log
+  if [ ! -z "${h_snmp_plugins_excluded[$NAME]}" ] ; then
+    GREP_ARGS="-v"
+    for r in ${h_snmp_plugins_excluded[$NAME]} ; do
+      GREP_ARGS="$GREP_ARGS -e snmp__$r"
+    done
+    munin-node-configure --shell --snmp $REMOTE | grep $GREP_ARGS | sh
+  fi
+
+}
+
 if [ -n "$TZ" ]; then
 
   # Set timezone
@@ -45,60 +113,11 @@ sudo -u munin -- /usr/sbin/rrdcached \
   -m 0660 -l unix:/run/munin/rrdcached.sock \
   -w 1800 -z 1800 -f 3600
 
-# Generate node list
-[[ ! -z "$NODES" ]] && for NODE in $NODES
-do
-  NAME=`echo "$NODE" | cut -d ":" -f1`
-  HOST=`echo "$NODE" | cut -d ":" -f2`
-  PORT=`echo "$NODE" | cut -d ":" -f3`
-  if [ ${#PORT} -eq 0 ]; then
-      PORT=4949
-  fi
-  if ! grep -q "$HOST" /etc/munin/munin-conf.d/nodes.conf 2>/dev/null ; then
-    cat << EOF >> /etc/munin/munin-conf.d/nodes.conf
-[$NAME]
-    address $HOST
-    use_node_name yes
-    port $PORT
+# Generate node config
+[[ ! -z "$NODES" ]] && generate_node_config
 
-EOF
-  fi
-done
-
-# Generate snmp_node list
-declare -A h_snmp_plugins_excluded
-
-for PLUGIN in $SNMP_PLUGINS_EXCLUDED ; do 
-  NAME=`echo "$SNMP_PLUGINS_EXCLUDED" | cut -d ":" -f 1`
-  PLUGIN_LIST=`echo "$SNMP_PLUGINS_EXCLUDED" | cut -d ":" -f 2`
-  h_snmp_plugins_excluded[$NAME]="$(echo $PLUGIN_LIST | sed -e 's/,/ /g')"
-done
-
-[[ ! -z "$SNMP_NODES" ]] && for SNMP_NODE in $SNMP_NODES
-do
-  NAME=`echo "$SNMP_NODE" | cut -d ":" -f 1`
-  COMM=`echo "$SNMP_NODE" | cut -d ":" -f 2`
-  REMOTE=`echo "$NAME" | cut -d ";" -f 2`
-  if ! grep -q "$REMOTE" /etc/munin/munin-conf.d/snmp_nodes.conf 2>/dev/null ; then
-    cat << EOF >> /etc/munin/munin-conf.d/snmp_nodes.conf
-[$NAME]
-    address localhost
-    use_node_name no
-
-EOF
-  fi
-
-# Probe snmp host to get SNMP plugins
-# Filter list by node entry in $h_snmp_plugins_excluded
-    echo "exclude_plugins: name=$NAME h_plugins_excluded[$NAME]=${h_snmp_plugins_excluded[$NAME]}" >> /docker-cmd.log
-    if [ ! -z "${h_snmp_plugins_excluded[$NAME]}" ] ; then
-      GREP_ARGS="-v"
-      for r in ${h_snmp_plugins_excluded[$NAME]} ; do
-        GREP_ARGS="$GREP_ARGS -e snmp__$r"
-      done
-      munin-node-configure --shell --snmp $REMOTE | grep $GREP_ARGS | sh
-    fi
-done
+# Generate snmp_node config
+[[ ! -z "$SNMP_NODES" ]] && generate_snmp_node_config
 
 # Add munin_stats plugin to /etc/munin/plugins/
 ln -s /usr/lib/munin/plugins/munin_stats /etc/munin/plugins/munin_stats
