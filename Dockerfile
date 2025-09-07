@@ -20,6 +20,7 @@ RUN apk --no-cache add \
     spawn-fcgi \
     sudo \
     ttf-opensans \
+    shadow \
     tzdata && \
   echo "$VERSION_ARG" > /run/version && \
   rm -rf /var/cache/apk/*

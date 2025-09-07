@@ -7,6 +7,8 @@ TZ="${TZ:-}"
 NODES="${NODES:-}"
 SNMP_NODES="${SNMP_NODES:-}"
 SNMP_PLUGINS_EXCLUDED="${SNMP_PLUGINS_EXCLUDED:-}"
+MUNIN_USERID="${MUNIN_USERID:-}"
+MUNIN_GROUPID="${MUNIN_GROUPID:-}"
 
 generate_node_config () {
 
@@ -87,6 +89,10 @@ if [ -n "$TZ" ]; then
   echo "$TZ" > /etc/timezone
 
 fi
+
+# Update munin uid, gid
+[[ ! -z "$MUNIN_USERID" ]] && usermod -u $MUNIN_USERID munin
+[[ ! -z "$MUNIN_GROUPID" ]] && groupmod -g $MUNIN_GROUPID munin
 
 # Make directories before setting permissions
 mkdir -p /run/munin
