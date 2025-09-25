@@ -97,6 +97,7 @@ fi
 # Clean up relic pid files
 
 [[ -f /run/munin/munin-node.pid ]] && rm -f /run/munin/munin-node.pid
+[[ -f /run/munin/rrdcached.pid ]] && rm -f /run/munin/rrdcached.pid
 
 # Make directories before setting permissions
 mkdir -p /run/munin
