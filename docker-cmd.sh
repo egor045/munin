@@ -94,6 +94,10 @@ fi
 [[ ! -z "$MUNIN_USERID" ]] && usermod -u $MUNIN_USERID munin
 [[ ! -z "$MUNIN_GROUPID" ]] && groupmod -g $MUNIN_GROUPID munin
 
+# Clean up relic pid files
+
+[[ -f /run/munin/munin-node.pid ]] && rm -f /run/munin/munin-node.pid
+
 # Make directories before setting permissions
 mkdir -p /run/munin
 mkdir -p /var/log/munin
