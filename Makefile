@@ -6,12 +6,8 @@ container: Dockerfile
 	docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" .
 
 latest: container
-	@echo "Tagging ${IMAGE_NAME}:${IMAGE_VERSION} as latest"
-	docker build -t "${IMAGE_NAME}:latest" .
-
-untagged: container
-	@echo "Building untagged image ${IMAGE_NAME}"
-	docker build -t "${IMAGE_NAME}" .
+        @echo "Tagging ${IMAGE_NAME}:${IMAGE_VERSION} as latest"
+        docker tag ${IMAGE_NAME}:${IMAGE_VERSION} ${IMAGE_NAME}:latest
 	
 release: container
 	@echo "Pushing container ${IMAGE_NAME}:${IMAGE_VERSION}"
