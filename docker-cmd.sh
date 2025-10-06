@@ -131,7 +131,7 @@ sudo -u munin -- /usr/sbin/rrdcached \
 [[ ! -z "$SNMP_NODES" ]] && generate_snmp_node_config
 
 # Add munin_stats plugin to /etc/munin/plugins/
-ln -s /usr/lib/munin/plugins/munin_stats /etc/munin/plugins/munin_stats
+[[ ! -f /etc/munin/plugins/munin_stats ]] && ln -s /usr/lib/munin/plugins/munin_stats /etc/munin/plugins/munin_stats
 
 # Run once before we start fcgi
 sudo -u munin -- /usr/bin/munin-cron munin
